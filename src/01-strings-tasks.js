@@ -18,10 +18,9 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function concatenateStrings(str1, str2) {
+  return (str1 + str2).trim();
 }
-
 
 /**
  * Returns the length of given string.
@@ -34,8 +33,8 @@ function concatenateStrings(/* value1, value2 */) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(str) {
+  return str.length;
 }
 
 /**
@@ -51,8 +50,8 @@ function getStringLength(/* value */) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -65,10 +64,9 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(str) {
+  return str.slice(7, str.length - 1);
 }
-
 
 /**
  * Returns a first char of the given string.
@@ -80,8 +78,8 @@ function extractNameFromTemplate(/* value */) {
  *   'John Doe'  => 'J'
  *   'cat'       => 'c'
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(str) {
+  return str[0];
 }
 
 /**
@@ -95,8 +93,8 @@ function getFirstChar(/* value */) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(str) {
+  return str.trim();
 }
 
 /**
@@ -110,8 +108,13 @@ function removeLeadingAndTrailingWhitespaces(/* value */) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString(/* value, count */) {
-  throw new Error('Not implemented');
+function repeatString(str, num) {
+  let result = '';
+  const n = Number(num);
+  for (let i = 0; i < n; i += 1) {
+    result += str;
+  }
+  return result;
 }
 
 /**
@@ -126,8 +129,11 @@ function repeatString(/* value, count */) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  const indexInStr = str.indexOf(value);
+  const str1 = str.slice(0, indexInStr);
+  const str2 = str.slice(indexInStr + value.length);
+  return str1 + str2;
 }
 
 /**
@@ -141,8 +147,8 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, str.length - 1);
 }
 
 
@@ -156,8 +162,8 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(str) {
+  return str.toUpperCase();
 }
 
 /**
@@ -175,8 +181,8 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -202,10 +208,24 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
-}
+function getRectangleString(width, height) {
+  let str = '';// + '\u2500' + '\u2502';
+  for (let i = 0; i < height; i += 1) {
+    if (i === 0) str += '\u250c';
+    else if (i === height - 1) str += '\u2514';
+    else str += '\u2502';
 
+    for (let j = 1; j < width - 1; j += 1) {
+      if (i === 0 || i === height - 1) str += '\u2500';
+      else str += ' ';
+    }
+
+    if (i === 0) str += '\u2510\n';
+    else if (i === height - 1) str += '\u2518\n';
+    else str += '\u2502\n';
+  }
+  return str;
+}
 
 /**
  * Encode specified string with ROT13 cipher
@@ -223,7 +243,7 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
+function encodeToRot13(str) {
   throw new Error('Not implemented');
 }
 
