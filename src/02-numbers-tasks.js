@@ -128,8 +128,9 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  const str = String(value);
+  return Number(str[str.length - 1]);
 }
 
 
@@ -144,8 +145,8 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return Number(value);
 }
 
 /**
@@ -161,8 +162,8 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelipidedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelipidedDiagonal(a, b, c) {
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 /**
@@ -182,8 +183,22 @@ function getParallelipidedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const str = String(num);
+  const lastDigit = str.length - 1;
+  let result = str.slice(0, lastDigit + 1 - pow);
+  for (let i = lastDigit; i > lastDigit - pow; i -= 1) {
+    if (str[i] < 5) result += 0;
+    else {
+      result = result.slice(0, lastDigit - pow) + (Number(str[i - 1]) + 1);
+    }
+  }
+  if (result.length !== str.length) {
+    for (let i = 0; i < pow; i += 1) {
+      result += '0';
+    }
+  }
+  return Number(result);
 }
 
 /**
@@ -203,8 +218,14 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(num) {
+  if (num <= 1) return false;
+  if (num === 2) return true;
+  if (num % 2 === 0) return false;
+  for (let i = 3; i * i <= num; i += 1) {
+    if (num % i === 0) return false;
+  }
+  return true;
 }
 
 /**
