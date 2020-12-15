@@ -214,12 +214,10 @@ function getRectangleString(width, height) {
     if (i === 0) str += '\u250c';
     else if (i === height - 1) str += '\u2514';
     else str += '\u2502';
-
     for (let j = 1; j < width - 1; j += 1) {
       if (i === 0 || i === height - 1) str += '\u2500';
       else str += ' ';
     }
-
     if (i === 0) str += '\u2510\n';
     else if (i === height - 1) str += '\u2518\n';
     else str += '\u2502\n';
