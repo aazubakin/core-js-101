@@ -84,8 +84,9 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (a + b > c && a + c > b && b + c > a) return true;
+  return false;
 }
 
 
@@ -195,8 +196,23 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let first = '';
+  let second = '';
+  let firstbracket = '';
+  let secondbracket = '';
+  if (a > b) {
+    first = b;
+    second = a;
+  } else {
+    first = a;
+    second = b;
+  }
+  if (isStartIncluded) firstbracket = '[';
+  else firstbracket = '(';
+  if (isEndIncluded) secondbracket = ']';
+  else secondbracket = ')';
+  return `${firstbracket}${first}, ${second}${secondbracket}`;
 }
 
 
@@ -229,8 +245,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return Number(String(num).split('').reverse().join(''));
 }
 
 
